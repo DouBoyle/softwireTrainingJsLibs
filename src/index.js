@@ -14,8 +14,7 @@ const width = 400,
     circleShape = Buffer.from(`<svg><circle cx="${r}" cy="${r}" r="${r}" /></svg>`);
 
 export function RoundImage(imagejpg) {
-
-const result = sharp(imagejpg)
+    return sharp(imagejpg)
     .resize(width, width)
     .composite([{
         input: circleShape,
