@@ -3,6 +3,7 @@ import assert from 'assert';
 import fs from 'fs';
 
 describe('only test', function() {
+
     it('checks output', function() {
         const testFile = 'test.jpg';
         const expectedOutput = `round-${testFile}`;
