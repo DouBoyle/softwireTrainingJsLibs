@@ -6,7 +6,7 @@ const circleShape = Buffer.from(
     `<svg><circle cx="${r}" cy="${r}" r="${r}" /></svg>`
 );
 
-export default function RoundImage(imagejpg) {
+export default function RoundImage(imagejpg, onSuccess) {
     return sharp(imagejpg)
     .resize(width, width)
     .composite([{
@@ -16,6 +16,6 @@ export default function RoundImage(imagejpg) {
     .webp()
     .toFile(`round-${imagejpg}`, (err, info) => err ?
         console.error(err.message) :
-        console.log('File created')
+        onSuccess(info)
     );
 }

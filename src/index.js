@@ -7,4 +7,10 @@ const rl = readline.createInterface(({
     terminal: false,
   }))
 
-rl.question("Which file would you like to round? ", RoundImage);
+rl.question(
+    "Which file would you like to round? ",
+    (filename) => RoundImage(
+        filename, 
+        (info) => console.log('File created')
+    )
+);

@@ -3,7 +3,6 @@ import assert from 'assert';
 import fs from 'fs';
 
 describe('only test', function() {
-
     it('checks output', function() {
         const testFile = 'test.jpg';
         const expectedOutput = `round-${testFile}`;
@@ -12,10 +11,12 @@ describe('only test', function() {
             fs.unlinkSync(expectedOutput);
         }
 
-        const result = RoundImage(testFile)
-        setTimeout(() => assert.equal(
-            fs.existsSync(expectedOutput), true),
-            1000
+        const result = RoundImage(
+            testFile,
+            () => assert.equal(
+                fs.existsSync(expectedOutput),
+                 true
+            )
         );
     });
   });
