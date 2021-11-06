@@ -1,4 +1,4 @@
-import { RoundImage } from '../dist/index';
+import RoundImage from '../dist/round';
 import assert from 'assert';
 import fs from 'fs';
 
@@ -13,6 +13,9 @@ describe('only test', function() {
         }
 
         const result = RoundImage(testFile)
-        setTimeout(() => assert.equal(fs.existsSync(expectedOutput), true), 1000);
+        setTimeout(() => assert.equal(
+            fs.existsSync(expectedOutput), true),
+            1000
+        );
     });
   });

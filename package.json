@@ -5,10 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "gulp build && mocha tests/ --require babel-register",
-    "lonetest": "mocha tests/ --require babel-register",
     "dev": "gulp dev",
-    "newtest": "gulp --require babel/register buildtest",
-    "gtest": "gulp notest"
+    "retest": "gulp retest"
   },
   "author": "",
   "license": "ISC",

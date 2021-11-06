@@ -22,50 +22,17 @@ gulp.task('dev', gulp.series('build', function() {
     });
 }));
 
-gulp.task('buildtest', gulp.series('build', function() {
-    return gulp.src("tests/**/*.js")
-        .pipe(babel())
-     //   .pipe(mocha())
-        .pipe(gulp.dest("dist"));
-}));
-
-// THIS WORKS TO JUST RUN BABLED CODE/TEST ON THEIR OWN
-gulp.task('runtest', gulp.series('build', function() {
-    /* return nodemon({
-         script: 'dist/test.js',
-         ext: 'js',
-         ignore: ['dist/'],
-         env: { 'NODE_ENV': 'development' },
-         tasks: ['buildtest']
-     });*/
-     return gulp.src("dist/**/*.js")
-         .pipe(mocha())
- }));
- 
- // RUNS TESTS, ONLY NEED TO BUILD SRC
- gulp.task('autotest', gulp.series('build', function() {
-    /* return nodemon({
-         script: 'dist/test.js',
-         ext: 'js',
-         ignore: ['dist/'],
-         env: { 'NODE_ENV': 'development' },
-         tasks: ['buildtest']
-     });*/
+ gulp.task('test', gulp.series('build', function() {
      return gulp.src("tests/**/*.js")
          .pipe(mocha({ require: [ 'babel-core/register', ] }))
  }));
 
- // TODO: Only runs once (and not initially)
- gulp.task('notest', gulp.series('build', function() {
-    return gulp.watch('tests/**/*.js', gulp.series(['autotest']));
- }));
-
-gulp.task('test', gulp.series('build', function() {
+gulp.task('retest', gulp.series('build', function() {
     return nodemon({
-         script: 'npm run start:test',
-         ext: 'js',
-         ignore: ['dist/'],
-         env: { 'NODE_ENV': 'development' },
-         tasks: ['buildtest', 'runtest']
-     });
-}));
+        script: 'dist/index.js',
+        ext: 'js',
+        ignore: ['dist/'],
+        env: { 'NODE_ENV': 'development' },
+        tasks: ['test']
+    });
+   }));
